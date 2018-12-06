@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('ValidarLogin','Api\WebServiceController@fncValidarLogin');
 Route::get('ListarEspecialistaDia','Api\WebServiceController@fncListarEspecialistasDia');
 Route::post('RegistrarCitaUsuario','Api\WebServiceController@fncRegistrarCitaUsuario');
+Route::post('TotalCitas','Api\WebServiceController@TotalCitasRestantes');
+Route::post('ValidarMedicoAsistencia','Api\WebServiceController@ValidarMedicoAsistencia');

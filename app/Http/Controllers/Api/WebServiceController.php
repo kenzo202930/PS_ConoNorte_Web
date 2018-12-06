@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Cita;
 use App\CitaUsuario;
+use App\TurnoEspecialista;
 use App\WebService;
 use Carbon\Carbon;
 use Illuminate\Database\QueryException;
@@ -45,6 +46,23 @@ class WebServiceController extends Controller
             $status = $ex->errorInfo;
         }
         return response()->json(['data' => $status]);
+    }
+
+    public function TotalCitasRestantes(Request $request)
+    {
+        $EspecialidadId = $request->input('Especialista_Id');
+
+
+        $TotalCitasxEspecilista = WebService::TotalCitasEspecilidadDia($EspecialidadId);
+
+        return response()->json(['Total' => $TotalCitasxEspecilista]);
+    }
+
+    public function ValidarMedicoAsistencia(Request $request)
+    {
+        $MedicoID = $request->input('MedicoId');
+        $Validar = WebService::ValidarAsistenciaEspecialista($MedicoID);
+        return response()->json(['Validar' => $Validar]);
     }
 
 
