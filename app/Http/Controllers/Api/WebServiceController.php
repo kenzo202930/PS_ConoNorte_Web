@@ -65,5 +65,12 @@ class WebServiceController extends Controller
         return response()->json(['Validar' => $Validar]);
     }
 
+    public function RegistrarMedicoAsistencia(Request $request)
+    {
+        $MedicoId = $request->input('MedicoId');
+        $resultado = WebService::RegistrarMedicoAsistencia($request);
+        return response()->json(['data' => $resultado]);
+    }
+
 
 }

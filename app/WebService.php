@@ -28,7 +28,14 @@ class WebService extends Model
     public static function RegistrarCitaUsuario(Request $request)
     {
         try {
-            $resultado = CitaUsuario::create($request->all());
+//            $resultado = CitaUsuario::create($request->all());
+            $resultado = new CitaUsuario();
+            $resultado->Fecha = Carbon::today();
+            $resultado->Nombre = $request->input('Nombre');
+            $resultado->Apellido = $request->input('Apellido');
+            $resultado->DNI = $request->input('DNI');
+            $resultado->Especialidad_Id = $request->input('Especialidad_Id');
+            $resultado->save();
             $respuesta = true;
         } catch (QueryException $ex) {
             $resultado = $ex->errorInfo;
@@ -48,5 +55,20 @@ class WebService extends Model
         $FechaHoy = Carbon::today()->toDateString();
         $resultado = TurnoEspecialista::where('MedicoId',$MedicoID)->where('Fecha',$FechaHoy)->count();
         return $resultado;
+    }
+
+    public static function RegistrarMedicoAsistencia(Request $request)
+    {
+        $respuesta = false;
+        try{
+            $resultado = new TurnoEspecialista();
+            $resultado->MedicoId = $request->input('MedicoId');
+            $resultado->Fecha = Carbon::today()->toDateString();
+            $resultado->save();
+            $respuesta = true;
+        }catch (QueryException $ex){
+            $respuesta = false;
+        }
+        return $respuesta;
     }
 }

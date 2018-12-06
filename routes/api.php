@@ -22,3 +22,4 @@ Route::get('ListarEspecialistaDia','Api\WebServiceController@fncListarEspecialis
 Route::post('RegistrarCitaUsuario','Api\WebServiceController@fncRegistrarCitaUsuario');
 Route::post('TotalCitas','Api\WebServiceController@TotalCitasRestantes');
 Route::post('ValidarMedicoAsistencia','Api\WebServiceController@ValidarMedicoAsistencia');
+Route::post('RegistrarMedicoAsistencia','Api\WebServiceController@RegistrarMedicoAsistencia');
